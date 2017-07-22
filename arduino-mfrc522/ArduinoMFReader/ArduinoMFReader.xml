@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<project platform="ArduinoNano">
+
+	<program watchdog-level="9">
+		<events>
+			<event name="OnStart">onStart</event>
+		</events>
+	</program>
+	
+	<components>
+	
+		<!-- ************************************************ -->
+		<!-- ************************************************ -->
+			
+		<component>
+			<name>cardCheckTimer</name>
+			<type>acp.common.timer</type>
+			<events>
+				<event name="OnTick">onCardCheck</event>
+			</events>
+			<properties>
+				<property name="Interval">250</property>
+			</properties>
+		</component>
+		
+		<component>
+			<name>cardReader</name>
+			<type>acp.rfid.mfrc522</type>
+			<properties>
+				<property name="ChipSelectPin">10</property>
+				<property name="ResetPin">9</property>
+			</properties>
+			<desc>Reader of Mifare Cards</desc>
+		</component>
+			
+		<component>
+			<name>messenger</name>
+			<type>acp.messenger.gep_stream_messenger</type>
+			<properties>
+				<property name="MessengerId">0</property>
+				<property name="MaxMessageSize">50</property>
+			</properties>
+			<events>
+				<event name="OnMessageReceived">onMessageReceived</event>
+			</events>
+		</component>	
+			
+	</components>
+	
+</project>

@@ -28,4 +28,26 @@ public class ArrayConverter {
 		return result;
 	}
 
+	public static String convertToHexString(int[] array, String separator) {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < array.length; i++) {
+			String hexByte = Integer.toHexString(array[i]).toUpperCase();
+			if (hexByte.length() == 1) {
+				hexByte = "0" + hexByte;
+			}
+
+			if (i != 0) {
+				sb.append(separator);
+			}
+
+			sb.append(hexByte);
+		}
+
+		return sb.toString();
+	}
+
+	public static String convertToHexString(byte[] array, String separator) {
+		return convertToHexString(convertToIntArray(array), separator);
+	}
+
 }
